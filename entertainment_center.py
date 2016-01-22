@@ -60,7 +60,30 @@ the_martian = media.Movie("The Martian",
                         "144 min"
 )
 
+star_wars = media.Movie("Star Wars: The Clone Wars",
+                        "As the Clone Wars sweep through the galaxy, the heroic Jedi Knights struggle to maintain order and restore peace. More and more systems are falling prey to the forces of the dark side as the Galactic Republic slips further and further under the sway of the Separatists and their never-ending droid army. Anakin Skywalker and his Padawan learner Ahsoka Tano find themselves on a mission with far-reaching consequences, one that brings them face-to-face with crime lord Jabba the Hutt. But Count Dooku and his sinister agents, including the nefarious Asajj Ventress, will stop at nothing to ensure that Anakin and Ahsoka fail at their quest.",
+                        "http://vignette2.wikia.nocookie.net/starwars/images/f/ff/The_Clone_Wars_film_poster.jpg/revision/latest?cb=20090916003358",
+                        "https://youtu.be/rvEK4--EpbQ",
+                        "Animation, Action, Adventure",
+                        "English",
+                        "15 Aug 2008",
+                        "98 min"
+)
 
-movies = [toy_story, jurassic_park, avatar, the_martian]
+the_avengers = media.Movie("The Avengers",
+                           "As the Clone Wars sweep through the galaxy, the heroic Jedi Knights struggle to maintain order and restore peace. More and more systems are falling prey to the forces of the dark side as the Galactic Republic slips further and further under the sway of the Separatists and their never-ending droid army. Anakin Skywalker and his Padawan learner Ahsoka Tano find themselves on a mission with far-reaching consequences, one that brings them face-to-face with crime lord Jabba the Hutt. But Count Dooku and his sinister agents, including the nefarious Asajj Ventress, will stop at nothing to ensure that Anakin and Ahsoka fail at their quest.",
+                           "http://ifanboy.com/wp-content/uploads/2012/02/avengers-assemble-the-avengers-gets-new-title-and-official-poster-81282-470-75.jpg",
+                           "https://youtu.be/rvEK4--EpbQ",
+                           "Action, Sci-Fi, Thriller",
+                           "English, Russian",
+                           "04 May 2012",
+                           "143 min"
+)
+
+"""
+Only instances that are added in the movies array will appear on the website!
+"""
+
+movies = [toy_story, jurassic_park, avatar, the_martian, star_wars, the_avengers]
 
 fresh_tomatoes.open_movies_page(movies)
