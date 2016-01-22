@@ -1,4 +1,4 @@
-Generates a movie trailer website
+Movie Trailer Website
 ===================================
 
 To run: `python entertainment_center.py`
