@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 50px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id');
+            var movieTitle = $(this).attr('movie-title');
+            var genre = $(this).attr('genre');
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            var language = $(this).attr('language');
+            var releaseDate = $(this).attr('release-date');
+            var runtime = $(this).attr('runtime');
+            var storyline = $(this).attr('storyline');
+
+            // Using jQuery to generate the movie data onto the Modal
+
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+
+            $('.modal-title').text(movieTitle);
+            $('.genre').text(genre);
+            $('.language').text(language);
+            $('.release-date').text(releaseDate);
+            $('.runtime').text(runtime);
+            $('.storyline').text(storyline);
+
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title">Toy Story</h4>
+                </div>
+                <div class="modal-body">
+                <p>
+                    <strong>Genre:</strong> <span class="genre"></span> <br/>
+                    <strong>Language: </strong> <span class="language"></span> <br/>
+                    <strong>Released: </strong> <span class="release-date"></span> <br/>
+                    <strong>Runtime: </strong> <span class="runtime"></span> <br/>
+                </p>
+                <p class="storyline"></p><br/>
+              <div class="scale-media" id="trailer-video-container">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="KYz2wyBy3kc"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Toy Story"
+        genre="Animation, Adventure, Comedy"
+        language="English"
+        release-date="22 Nov 1995"
+        runtime="81 min"
+        storyline="A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+    >
+    <img src="http://vignette4.wikia.nocookie.net/disney/images/4/4c/Toy-story-movie-posters-4.jpg/revision/latest?cb=20140816182710" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="lc0UehYemQA"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Jurassic Park"
+        genre="Adventure, Sci-Fi, Thriller"
+        language="English, Spanish"
+        release-date="11 Jun 1993"
+        runtime="127 min"
+        storyline="Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs. John Hammond has invited four individuals, along with his two grandchildren, to join him at Jurassic Park. But will everything go according to plan? A park employee attempts to steal dinosaur embryos, critical security systems are shut down and it now becomes a race for survival with dinosaurs roaming freely over the island."
+    >
+    <img src="https://www.movieposter.com/posters/archive/main/142/MPW-71462" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="5PSNL1qE6VY"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Avatar"
+        genre="Action, Adventure, Fantasy"
+        language="English, Spanish"
+        release-date="18 Dec 2009"
+        runtime="162 min"
+        storyline="A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home."
+    >
+    <img src="http://imgs.abduzeedo.com/files/articles/Avatar/4154691473_fa5a635992_o.jpg" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="ej3ioOneTy8"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="The Martian"
+        genre="Adventure, Comedy, Drama"
+        language="English, Mandarin"
+        release-date="02 Oct 2015"
+        runtime="144 min"
+        storyline="During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive."
+    >
+    <img src="http://static.hd-trailers.net/images/the-martian-104112-poster-xlarge.jpg" width="220" height="342">
+</div>
+
+    </div>
+  </body>
+</html>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title">Jurassic Park</h4>
+                </div>
+                <div class="modal-body">
+                <p>
+                    <strong>Genre:</strong> <span class="genre"></span> <br/>
+                    <strong>Language: </strong> <span class="language"></span> <br/>
+                    <strong>Released: </strong> <span class="release-date"></span> <br/>
+                    <strong>Runtime: </strong> <span class="runtime"></span> <br/>
+                </p>
+                <p class="storyline"></p><br/>
+              <div class="scale-media" id="trailer-video-container">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="KYz2wyBy3kc"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Toy Story"
+        genre="Animation, Adventure, Comedy"
+        language="English"
+        release-date="22 Nov 1995"
+        runtime="81 min"
+        storyline="A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+    >
+    <img src="http://vignette4.wikia.nocookie.net/disney/images/4/4c/Toy-story-movie-posters-4.jpg/revision/latest?cb=20140816182710" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="lc0UehYemQA"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Jurassic Park"
+        genre="Adventure, Sci-Fi, Thriller"
+        language="English, Spanish"
+        release-date="11 Jun 1993"
+        runtime="127 min"
+        storyline="Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs. John Hammond has invited four individuals, along with his two grandchildren, to join him at Jurassic Park. But will everything go according to plan? A park employee attempts to steal dinosaur embryos, critical security systems are shut down and it now becomes a race for survival with dinosaurs roaming freely over the island."
+    >
+    <img src="https://www.movieposter.com/posters/archive/main/142/MPW-71462" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="5PSNL1qE6VY"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Avatar"
+        genre="Action, Adventure, Fantasy"
+        language="English, Spanish"
+        release-date="18 Dec 2009"
+        runtime="162 min"
+        storyline="A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home."
+    >
+    <img src="http://imgs.abduzeedo.com/files/articles/Avatar/4154691473_fa5a635992_o.jpg" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="ej3ioOneTy8"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="The Martian"
+        genre="Adventure, Comedy, Drama"
+        language="English, Mandarin"
+        release-date="02 Oct 2015"
+        runtime="144 min"
+        storyline="During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive."
+    >
+    <img src="http://static.hd-trailers.net/images/the-martian-104112-poster-xlarge.jpg" width="220" height="342">
+</div>
+
+    </div>
+  </body>
+</html>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title">Avatar</h4>
+                </div>
+                <div class="modal-body">
+                <p>
+                    <strong>Genre:</strong> <span class="genre"></span> <br/>
+                    <strong>Language: </strong> <span class="language"></span> <br/>
+                    <strong>Released: </strong> <span class="release-date"></span> <br/>
+                    <strong>Runtime: </strong> <span class="runtime"></span> <br/>
+                </p>
+                <p class="storyline"></p><br/>
+              <div class="scale-media" id="trailer-video-container">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="KYz2wyBy3kc"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Toy Story"
+        genre="Animation, Adventure, Comedy"
+        language="English"
+        release-date="22 Nov 1995"
+        runtime="81 min"
+        storyline="A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+    >
+    <img src="http://vignette4.wikia.nocookie.net/disney/images/4/4c/Toy-story-movie-posters-4.jpg/revision/latest?cb=20140816182710" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="lc0UehYemQA"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Jurassic Park"
+        genre="Adventure, Sci-Fi, Thriller"
+        language="English, Spanish"
+        release-date="11 Jun 1993"
+        runtime="127 min"
+        storyline="Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs. John Hammond has invited four individuals, along with his two grandchildren, to join him at Jurassic Park. But will everything go according to plan? A park employee attempts to steal dinosaur embryos, critical security systems are shut down and it now becomes a race for survival with dinosaurs roaming freely over the island."
+    >
+    <img src="https://www.movieposter.com/posters/archive/main/142/MPW-71462" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="5PSNL1qE6VY"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Avatar"
+        genre="Action, Adventure, Fantasy"
+        language="English, Spanish"
+        release-date="18 Dec 2009"
+        runtime="162 min"
+        storyline="A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home."
+    >
+    <img src="http://imgs.abduzeedo.com/files/articles/Avatar/4154691473_fa5a635992_o.jpg" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="ej3ioOneTy8"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="The Martian"
+        genre="Adventure, Comedy, Drama"
+        language="English, Mandarin"
+        release-date="02 Oct 2015"
+        runtime="144 min"
+        storyline="During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive."
+    >
+    <img src="http://static.hd-trailers.net/images/the-martian-104112-poster-xlarge.jpg" width="220" height="342">
+</div>
+
+    </div>
+  </body>
+</html>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title">The Martian</h4>
+                </div>
+                <div class="modal-body">
+                <p>
+                    <strong>Genre:</strong> <span class="genre"></span> <br/>
+                    <strong>Language: </strong> <span class="language"></span> <br/>
+                    <strong>Released: </strong> <span class="release-date"></span> <br/>
+                    <strong>Runtime: </strong> <span class="runtime"></span> <br/>
+                </p>
+                <p class="storyline"></p><br/>
+              <div class="scale-media" id="trailer-video-container">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="KYz2wyBy3kc"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Toy Story"
+        genre="Animation, Adventure, Comedy"
+        language="English"
+        release-date="22 Nov 1995"
+        runtime="81 min"
+        storyline="A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room."
+    >
+    <img src="http://vignette4.wikia.nocookie.net/disney/images/4/4c/Toy-story-movie-posters-4.jpg/revision/latest?cb=20140816182710" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="lc0UehYemQA"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Jurassic Park"
+        genre="Adventure, Sci-Fi, Thriller"
+        language="English, Spanish"
+        release-date="11 Jun 1993"
+        runtime="127 min"
+        storyline="Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs. John Hammond has invited four individuals, along with his two grandchildren, to join him at Jurassic Park. But will everything go according to plan? A park employee attempts to steal dinosaur embryos, critical security systems are shut down and it now becomes a race for survival with dinosaurs roaming freely over the island."
+    >
+    <img src="https://www.movieposter.com/posters/archive/main/142/MPW-71462" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="5PSNL1qE6VY"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="Avatar"
+        genre="Action, Adventure, Fantasy"
+        language="English, Spanish"
+        release-date="18 Dec 2009"
+        runtime="162 min"
+        storyline="A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home."
+    >
+    <img src="http://imgs.abduzeedo.com/files/articles/Avatar/4154691473_fa5a635992_o.jpg" width="220" height="342">
+</div>
+
+    <div class="col-md-6 col-lg-4 movie-tile text-center"
+        data-trailer-youtube-id="ej3ioOneTy8"
+        data-toggle="modal"
+        data-target="#trailer"
+        movie-title="The Martian"
+        genre="Adventure, Comedy, Drama"
+        language="English, Mandarin"
+        release-date="02 Oct 2015"
+        runtime="144 min"
+        storyline="During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive."
+    >
+    <img src="http://static.hd-trailers.net/images/the-martian-104112-poster-xlarge.jpg" width="220" height="342">
+</div>
+
+    </div>
+  </body>
+</html>
